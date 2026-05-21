@@ -9,7 +9,7 @@ const SEED_STUDENTS = [
   { id: 'stu-004', studentId: 'STU-0004', firstName: 'Noah', lastName: 'Davis', email: 'noah.d@school.edu', phone: '+1 555-1004', gender: 'male', dateOfBirth: '2008-05-19', address: '321 Elm St, Springfield', gradeLevel: 'Grade 10', status: 'inactive', enrollmentDate: '2023-09-01', guardianName: 'Jennifer Davis', guardianPhone: '+1 555-1004', guardianEmail: 'j.davis@email.com', gpa: 2.7, photo: null, notes: 'On medical leave' },
   { id: 'stu-005', studentId: 'STU-0005', firstName: 'Ava', lastName: 'Martinez', email: 'ava.m@school.edu', phone: '+1 555-1005', gender: 'female', dateOfBirth: '2007-01-30', address: '654 Cedar Blvd, Springfield', gradeLevel: 'Grade 11', status: 'active', enrollmentDate: '2022-09-01', guardianName: 'Carlos Martinez', guardianPhone: '+1 555-1005', guardianEmail: 'c.martinez@email.com', gpa: 3.6, photo: null, notes: '' },
   { id: 'stu-006', studentId: 'STU-0006', firstName: 'William', lastName: 'Garcia', email: 'will.g@school.edu', phone: '+1 555-1006', gender: 'male', dateOfBirth: '2006-09-14', address: '987 Birch Ln, Springfield', gradeLevel: 'Grade 12', status: 'active', enrollmentDate: '2021-09-01', guardianName: 'Maria Garcia', guardianPhone: '+1 555-1006', guardianEmail: 'm.garcia@email.com', gpa: 4.0, photo: null, notes: 'Valedictorian candidate' },
-  { id: 'stu-007', studentId: 'STU-0007', firstName: 'Sophia', lastName: 'Rodriguez', email: 'sophia.r@school.edu', phone: '+1 555-1007', gender: 'female', dateOfBirth: '2009-06-25', address: '147 Walnut Dr, Springfield', gradeLevel: 'Grade 9', status: 'active', enrollmentDate: '2024-09-01', guardianName: 'Luis Rodriguez', guardianPhone: '+1 555-1007', guardianEmail: 'l.rodriguez@email.com', gpa: 3.4, photo: null, notes: '' },
+  { id: 'stu-007', studentId: 'STU-0007', firstName: 'Sophia', lastName: 'Rodriguez', email: 'sophia.r@school.edu', phone: '+1 555-1007', gender: 'female', dateOfBirth: '2009-06-25', address: '147 Walnut Dr, Springfield', gradeLevel: 'Grade 9', status: 'active', enrollmentDate: '2024-09-01', guardianName: 'Luis Rodriguez', guardianPhone: '+1 555-1007', guardianEmail: 'l.rodriguez@email.com', gpa: 3.4, photo: null, notes: '' },--
   { id: 'stu-008', studentId: 'STU-0008', firstName: 'James', lastName: 'Lee', email: 'james.l@school.edu', phone: '+1 555-1008', gender: 'male', dateOfBirth: '2008-12-03', address: '258 Spruce Way, Springfield', gradeLevel: 'Grade 10', status: 'suspended', enrollmentDate: '2023-09-01', guardianName: 'Helen Lee', guardianPhone: '+1 555-1008', guardianEmail: 'h.lee@email.com', gpa: 2.1, photo: null, notes: 'Disciplinary suspension until Jan 2025' },
 ]
 
@@ -33,7 +33,6 @@ export const studentService = {
   async update(id, data) {
     return studentStorage.update(id, data)
   },
-
   async delete(id) {
     return studentStorage.delete(id)
   },
