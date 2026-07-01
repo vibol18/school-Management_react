@@ -1,17 +1,13 @@
 import React, {useState, useEffect} from "react";
-import axios from "axios";
-
-const api = axios.create({baseURL: "http://localhost:8082"});
-
-const getGrades = () => api.get("/api/grades");
-const createGrade = (data) => api.post("/api/grades", data);
-const updateGrade = (id, data) => api.put(`/api/grades/${id}`, data);
-const deleteGrade = (id) => api.delete(`/api/grades/${id}`);
-const getStudentAverage = (studentId) => api.get(`/api/grades/student/${studentId}/average`);
-
-// Endpoints to fetch parent entities for dropdown populations
-const getStudents = () => api.get("/api/students");
-const getExams = () => api.get("/api/exams");
+import {
+    getGrades,
+    createGrade,
+    updateGrade,
+    deleteGrade,
+    getStudentAverage,
+    getStudents,
+    getExams,
+} from "../Service/GradeService";
 
 const GRADE_META = {
     A: {color: "#0c447c", bg: "#e6f1fb", border: "#b5d4f4", label: "Excellent"},

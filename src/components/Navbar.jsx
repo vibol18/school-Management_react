@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Client } from '@stomp/stompjs';
-
-const API_BASE_URL = 'http://localhost:8082/api/notifications';
-const WS_URL = 'ws://localhost:8082/ws';
+import { WS_URL } from '../api/config';
+import {
+  getNotifications,
+  markNotificationRead,
+  markAllNotificationsRead,
+} from '../Service/NotificationService';
 
 const fetchStoredSessionProfile = () => {
   const fallback = { name: 'Admin User', role: 'Administrator', initials: 'AD' };
@@ -143,11 +146,9 @@ function Navbar() {
 
   const fetchHistoricalNotifications = async () => {
     try {
-      const res = await fetch(API_BASE_URL);
-      if (res.ok) {
-        const data = await res.json();
-        setNotifs(data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
-      }
+      const res = await getNotifications();
+      const data = Array.isArray(res.data) ? res.data : [];
+      setNotifs(data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
     } catch (e) {
       console.error('Failed to fetch notifications', e);
     }
@@ -156,8 +157,8 @@ function Navbar() {
   const handleMarkAsRead = async (id, e) => {
     e.stopPropagation();
     try {
-      const res = await fetch(`${API_BASE_URL}/${id}/read`, { method: 'PUT' });
-      if (res.ok) setNotifs(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n));
+      await markNotificationRead(id);
+      setNotifs(prev => prev.map(n => n.id === id ? { ...n, isRead: true } : n));
     } catch (err) {
       console.error('Mark read error', err);
     }
@@ -166,8 +167,8 @@ function Navbar() {
   const markAllRead = async () => {
     const unread = notifs.filter(n => !n.isRead);
     try {
-      await Promise.all(unread.map(n => fetch(`${API_BASE_URL}/${n.id}/read`, { method: 'PUT' })));
-      setNotifs(prev => prev.map(n => ({ ...n, isRead: true })));
+      await markAllNotificationsRead(unread.map((n) => n.id));
+      setNotifs(prev => prev.map((n) => ({ ...n, isRead: true })));
     } catch (e) {
       console.error('Batch mark-read error', e);
     }

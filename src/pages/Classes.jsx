@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
 import {getClasses, createClass, updateClass, deleteClass} from "../Service/classService";
+import {getExams} from "../Service/ExamService";
+import {getStudentsByClass} from "../Service/studentService";
 
 function Classes() {
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ function Classes() {
             // 2. Fetch all scheduled exam records from the database endpoint
             let allExams = [];
             try {
-                const examRes = await axios.get("http://localhost:8082/api/exams");
+                const examRes = await getExams();
                 allExams = examRes.data || [];
             } catch (e) {
                 console.error("Failed to load global exams manifest from server architecture:", e);
@@ -43,7 +44,7 @@ function Classes() {
                 rawData.map(async (c) => {
                     let studentCount = 0;
                     try {
-                        const studentRes = await axios.get(`http://localhost:8082/api/students/class/${c.id}`);
+                        const studentRes = await getStudentsByClass(c.id);
                         studentCount = studentRes.data ? studentRes.data.length : 0;
                     } catch (error) {
                         studentCount = 0;

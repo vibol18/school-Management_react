@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../Service/AuthService';
+import { login, getGoogleAuthUrl } from '../Service/AuthService';
 
 function Login() {
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ function Login() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:8082/oauth2/authorization/google";
+    window.location.href = getGoogleAuthUrl();
   };
 
   return (
