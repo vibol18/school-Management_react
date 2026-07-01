@@ -11,7 +11,7 @@ function MainLayout() {
 
   if (!token) return <Navigate to="/login" replace />;
 
-  // You can pass real user data from context / auth store here
+  
   const user = {
     name: 'Admin User',
     role: 'Administrator',

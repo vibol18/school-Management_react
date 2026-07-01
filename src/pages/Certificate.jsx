@@ -36,7 +36,7 @@ function Certificate() {
         studentId: "",
         courseId: "",
         issueDate: "",
-        grade: "",
+        grade: "", // បង្កើតជា String ទទេជាលំនាំដើម
         remark: ""
     });
 
@@ -96,7 +96,7 @@ function Certificate() {
             studentId: c.studentId || "",         
             courseId: c.courseId || "",           
             issueDate: c.issueDate || "",
-            grade: c.grade || "",
+            grade: c.grade || "", // ធានាថាវាមិនមែនជា null ដើម្បីកុំឱ្យគាំង Input Box
             remark: c.remark || ""
         });
         setIsEdit(true);
@@ -127,7 +127,7 @@ function Certificate() {
             studentId: form.studentId === "" ? null : Number(form.studentId),
             courseId: form.courseId === "" ? null : Number(form.courseId),
             issueDate: form.issueDate === "" ? null : form.issueDate,
-            grade: form.grade || null,
+            grade: form.grade.trim() === "" ? null : form.grade, // បើទទេផ្ញើទៅ API ជា null
             remark: form.remark || null
         };
 
@@ -314,7 +314,7 @@ function Certificate() {
                                 <input
                                     type="text"
                                     value={form.grade}
-                                    onChange={(e) => setForm({ ...form, grade: e.target.value })}
+                                    onChange={(e) => setForm({ ...form, grade: e.target.value })} // បានបន្ថែម onChange ដើម្បីឱ្យវាយបញ្ចូលកើត
                                     placeholder="A+"
                                     className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm"
                                 />
@@ -348,14 +348,11 @@ function Certificate() {
                 </div>
             )}
 
-            {/* ========================================================
-                VIEW DETAIL MODAL (ផ្ទាំងសម្រាប់ Download និងមើលរូបភាព Certificate)
-               ======================================================== */}
+
             {isDetailOpen && selectedCertificate && (
                 <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 overflow-y-auto">
                     <div className="bg-white rounded-2xl w-full max-w-[1180px] overflow-hidden shadow-2xl my-auto">
                         
-                        {/* Modal Header */}
                         <div className="bg-slate-900 px-6 py-4 flex justify-between items-center border-b border-slate-800">
                             <div>
                                 <h2 className="text-md font-semibold text-white">Certificate Live Preview</h2>
@@ -369,12 +366,10 @@ function Certificate() {
                             </button>
                         </div>
                         
-                        {/* Modal Body: បង្ហាញផ្ទាំង Certificate Template ដែលបានរចនា */}
                         <div className="p-6 flex flex-col items-center justify-center bg-gray-100 overflow-x-auto">
                             <CertificateTemplate data={selectedCertificate} />
                         </div>
                         
-                        {/* Modal Footer */}
                         <div className="bg-gray-50 px-6 py-3 flex justify-end border-t">
                             <button
                                 onClick={() => setIsDetailOpen(false)}
