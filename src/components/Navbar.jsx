@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Client } from '@stomp/stompjs';
 
-const API_BASE_URL = 'http://localhost:8080/api/notifications';
-const WS_URL = 'ws://localhost:8080/ws';
+const API_BASE_URL = 'http://localhost:8082/api/notifications';
+const WS_URL = 'ws://localhost:8082/ws';
 
 const fetchStoredSessionProfile = () => {
   const fallback = { name: 'Admin User', role: 'Administrator', initials: 'AD' };
