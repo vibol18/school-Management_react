@@ -4,11 +4,11 @@ function Setting() {
   const [activeTab, setActiveTab] = useState('profile');
   const [isSaved, setIsSaved] = useState(false);
 
-  // 🌟 1. Dynamic Initialization state reading directly from local storage session
+  
   const [profileForm, setProfileForm] = useState({
     username: '',
     email: '',
-    phone: '+855 12 345 678', // Default fallback placeholders
+    phone: '+855 12 345 678', 
     language: 'English'
   });
 
@@ -19,7 +19,7 @@ function Setting() {
     maintenanceMode: false
   });
 
-  // 🌟 2. Load the real logged-in user data whenever the view is initialized
+  
   useEffect(() => {
     try {
       const savedUser = localStorage.getItem('user');
@@ -27,8 +27,8 @@ function Setting() {
         const parsedUser = JSON.parse(savedUser);
         setProfileForm(prevState => ({
           ...prevState,
-          username: parsedUser.name || 'Admin User', // Pulls live .name string from database
-          email: parsedUser.email || 'admin@school.edu' // Pulls live .email string from database
+          username: parsedUser.name || 'Admin User', 
+          email: parsedUser.email || 'admin@school.edu' 
         }));
       }
     } catch (error) {
@@ -47,22 +47,22 @@ function Setting() {
     setIsSaved(false);
   };
 
-  // 🌟 3. Handle saving changes back to browser memory storage
+  
   const handleSave = (e) => {
     e.preventDefault();
     
     try {
-      // Pull current user object metadata representation block to avoid stripping extra fields
+      
       const currentRawUser = localStorage.getItem('user');
       let baseUserObj = currentRawUser ? JSON.parse(currentRawUser) : {};
       
-      // Merge modifications back to browser local state
+      
       baseUserObj.name = profileForm.username;
       baseUserObj.email = profileForm.email;
       
       localStorage.setItem('user', JSON.stringify(baseUserObj));
       
-      // 🌟 Fire the custom event instantly so the Navbar updates its title and initials right away!
+      
       window.dispatchEvent(new Event('userLogin'));
       
       setIsSaved(true);
@@ -75,7 +75,7 @@ function Setting() {
   return (
     <div className="p-6 bg-gray-50 min-h-[calc(100vh-60px)] text-[#0f1e3c]">
       
-      {/* Header Title */}
+      {}
       <div className="mb-6">
         <h1 className="text-2xl font-bold tracking-tight">System Settings</h1>
         <p className="text-xs text-gray-400">Manage your administrative configurations and account parameters</p>
@@ -83,7 +83,7 @@ function Setting() {
 
       <div className="flex flex-col md:flex-row gap-6 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden min-h-[500px]">
         
-        {/* Left Tab Navigation Sidebar */}
+        {}
         <aside className="w-full md:w-64 bg-[#0f1e3c]/5 border-r border-gray-100 p-4 flex flex-col gap-1">
           <button
             type="button"
@@ -117,11 +117,11 @@ function Setting() {
           </button>
         </aside>
 
-        {/* Right Active Configuration Panel Content */}
+        {}
         <main className="flex-1 p-6 md:p-8">
           <form onSubmit={handleSave} className="max-w-xl flex flex-col h-full justify-between gap-8">
             
-            {/* TAB CONTENT: PROFILE PROFILE SETUP */}
+            {}
             {activeTab === 'profile' && (
               <div>
                 <h2 className="text-lg font-bold mb-1">Account Information</h2>
@@ -174,7 +174,7 @@ function Setting() {
               </div>
             )}
 
-            {/* TAB CONTENT: SYSTEM INSTITUTION SETUP */}
+            {}
             {activeTab === 'system' && (
               <div>
                 <h2 className="text-lg font-bold mb-1">School Configuration</h2>
@@ -242,7 +242,7 @@ function Setting() {
               </div>
             )}
 
-            {/* Bottom Actions Row Block */}
+            {}
             <div className="flex items-center justify-between border-t border-gray-100 pt-4 mt-auto">
               <div>
                 {isSaved && (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createSubject, deleteSubject, subjectAll, updateSubject } from '../Service/SubjectService';
-// Double-check that these import paths match your project structure
+
 import { getAllCourses } from '../Service/courseService';
 import { showAllteacher } from '../Service/teacherService'; 
 
@@ -37,13 +37,13 @@ function Subject() {
 
   const fetchDropdownData = async () => {
     try {
-      // FIX: Changed condition check from courseAll to your actual import function getAllCourses
+      
       if (typeof getAllCourses === 'function') {
         const courseRes = await getAllCourses();
         setCourses(Array.isArray(courseRes) ? courseRes : courseRes.data || []);
       }
       
-      // FIX: Changed condition check from teacherAll to your actual import function showAllteacher
+      
       if (typeof showAllteacher === 'function') {
         const teacherRes = await showAllteacher();
         setTeachers(Array.isArray(teacherRes) ? teacherRes : teacherRes.data || []);
@@ -113,7 +113,7 @@ function Subject() {
     <div className="min-h-screen bg-[#f8fafc] p-6 font-sans">
       <div className="max-w-7xl mx-auto">
 
-        {/* ── HEADER CONTROL BAR ── */}
+        {}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div>
             <h1 className="text-2xl font-bold text-[#0f1e3c] tracking-tight">Subject Framework</h1>
@@ -139,7 +139,7 @@ function Subject() {
           </div>
         </div>
 
-        {/* ── SUBJECT GRID LAYOUT ── */}
+        {}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredSubjects.map((sub) => (
             <div key={sub.id} className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition duration-200 flex flex-col justify-between space-y-4">
@@ -157,13 +157,13 @@ function Subject() {
                 </p>
               </div>
 
-              {/* Course & Teacher Metadata Footnotes */}
+              {}
               <div className="pt-3 border-t border-gray-50 flex flex-col gap-1 text-[11px] font-medium text-gray-400">
                 <div>Course: <span className="text-slate-700 font-bold">{sub.courseName || sub.course?.name || 'Unassigned'}</span></div>
                 <div>Teacher: <span className="text-slate-700 font-bold">{sub.teacherName || sub.teacher?.name || 'Unassigned'}</span></div>
               </div>
 
-              {/* Action Buttons */}
+              {}
               <div className="flex items-center gap-2 pt-1">
                 <button 
                   onClick={() => openEdit(sub)}
@@ -185,7 +185,7 @@ function Subject() {
 
       </div>
 
-      {/* ── OPERATION RECORD MODAL ── */}
+      {}
       {isOpen && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden border border-slate-100">
@@ -209,7 +209,7 @@ function Subject() {
                 />
               </div>
 
-              {/* Course and Teacher Dropdown Selection Menu */}
+              {}
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-bold uppercase text-slate-500 mb-1">Course Assignment</label>

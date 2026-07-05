@@ -5,9 +5,9 @@ import {
     updateGrade,
     deleteGrade,
     getStudentAverage,
-    getStudents,
-    getExams,
 } from "../Service/GradeService";
+import { studentAll as getStudents } from "../Service/studentService";
+import { getExams } from "../Service/ExamService";
 
 const GRADE_META = {
     A: {color: "#0c447c", bg: "#e6f1fb", border: "#b5d4f4", label: "Excellent"},
@@ -163,7 +163,7 @@ export default function Grades() {
         fetchData();
     }, []);
 
-    // Debug payload schema logger helper
+    
     useEffect(() => {
         if (students.length > 0) console.log("First Student Object Structure:", students[0]);
         if (exams.length > 0) console.log("First Exam Object Structure:", exams[0]);
@@ -255,7 +255,7 @@ export default function Grades() {
     return (
         <div style={{minHeight: "100vh", background: "#f8f7f4", fontFamily: "'Georgia', serif", padding: "28px 32px"}}>
             <div style={{maxWidth: 1100, margin: "0 auto"}}>
-                {/* Header Block */}
+                {}
                 <div
                     style={{
                         display: "flex",
@@ -312,7 +312,7 @@ export default function Grades() {
                     </button>
                 </div>
 
-                {/* Stats Section */}
+                {}
                 <div
                     style={{
                         display: "grid",
@@ -327,7 +327,7 @@ export default function Grades() {
                     <StatCard icon="≡" label="Total Records" value={records.length} accent="#533ab7" />
                 </div>
 
-                {/* Action Filters Bar */}
+                {}
                 <div style={{display: "flex", gap: 10, marginBottom: 20, flexWrap: "wrap"}}>
                     <input
                         value={search}
@@ -370,7 +370,7 @@ export default function Grades() {
                     </div>
                 </div>
 
-                {/* Master Ledger Data Table */}
+                {}
                 <div style={{background: "#fff", border: "0.5px solid #d3d1c7", borderRadius: 14, overflow: "hidden"}}>
                     {loading ? (
                         <div
@@ -609,7 +609,7 @@ export default function Grades() {
                     )}
                 </div>
 
-                {/* Grade Distribution Bar Metrics */}
+                {}
                 {records.length > 0 && (
                     <div
                         style={{
@@ -690,7 +690,7 @@ export default function Grades() {
                 )}
             </div>
 
-            {/* Record Creation Dialog Overlay Modal */}
+            {}
             {showCreate && (
                 <div style={overlay} onClick={(e) => e.target === e.currentTarget && setShowCreate(false)}>
                     <div style={modal}>
@@ -726,7 +726,7 @@ export default function Grades() {
                                 fontFamily: "system-ui, sans-serif",
                             }}
                         >
-                            {/* Responsive Student Dropdown Select Options Mapping */}
+                            {}
                             <div>
                                 <label style={labelStyle}>Student Selection</label>
                                 <select
@@ -743,7 +743,7 @@ export default function Grades() {
                                 </select>
                             </div>
 
-                            {/* Responsive Exam Dropdown Select Options Mapping */}
+                            {}
                             <div>
                                 <label style={labelStyle}>Exam Target</label>
                                 <select
@@ -858,7 +858,7 @@ export default function Grades() {
     );
 }
 
-// Global View Layout Style Configs
+
 const btnPrimary = {
     padding: "8px 16px",
     background: "#185fa5",

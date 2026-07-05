@@ -61,7 +61,7 @@ function Exams() {
     };
 
     const handleEdit = (item) => {
-        // Safely reads either flat property or deeply nested structure from database payload
+        
         const selectedClassId = item.classRoomId || item.classRoom?.id || "";
         const selectedSubjectId = item.subjectId || item.subject?.id || "";
 

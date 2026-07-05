@@ -4,9 +4,9 @@ import { getCourseById } from "../Service/courseService";
 function ViewStudent({ student: s, onBack, onEdit, onDelete }) {
     const [course, setCourse] = useState(s.course || null);
     const [courseLoading, setCourseLoading] = useState(false);
-    const [imageError, setImageError] = useState(false); // Clean fallback state
+    const [imageError, setImageError] = useState(false); 
 
-    // Safely track the course ID primitive
+    
     const courseId = s.course?.id;
 
     useEffect(() => {
@@ -29,7 +29,7 @@ function ViewStudent({ student: s, onBack, onEdit, onDelete }) {
                 if (isMounted) setCourseLoading(false);
             });
 
-        // Cleanup function prevents state updates if user navigates away mid-fetch
+        
         return () => {
             isMounted = false;
         };
@@ -37,7 +37,7 @@ function ViewStudent({ student: s, onBack, onEdit, onDelete }) {
 
     const initials = ((s.firstName?.[0] || "") + (s.lastName?.[0] || "")).toUpperCase() || "??";
 
-    // Reusable custom field component
+    
     const Field = ({ label, value }) => (
         <div className="flex flex-col gap-0.5">
             <span className="text-xs text-gray-400">{label}</span>
@@ -57,7 +57,7 @@ function ViewStudent({ student: s, onBack, onEdit, onDelete }) {
         <div className="min-h-screen bg-gray-50 p-8">
             <div className="max-w-2xl mx-auto">
 
-                {/* BREADCRUMB */}
+                {}
                 <div className="flex items-center gap-2 mb-6">
                     <button
                         onClick={onBack}
@@ -73,7 +73,7 @@ function ViewStudent({ student: s, onBack, onEdit, onDelete }) {
                     <span className="text-sm text-gray-600 font-medium">{s.firstName} {s.lastName}</span>
                 </div>
 
-                {/* HERO CARD */}
+                {}
                 <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden mb-5">
                     <div className="h-1.5 bg-gradient-to-r from-blue-500 via-teal-400 to-pink-400" />
                     <div className="p-6 flex items-center gap-5">
@@ -148,7 +148,7 @@ function ViewStudent({ student: s, onBack, onEdit, onDelete }) {
                     </div>
                 </div>
 
-                {/* PERSONAL + CONTACT */}
+                {}
                 <div className="grid grid-cols-2 gap-5 mb-5">
                     <div className="bg-white rounded-2xl border border-gray-100 p-5">
                         <div className="flex items-center gap-2 mb-4">
@@ -191,7 +191,7 @@ function ViewStudent({ student: s, onBack, onEdit, onDelete }) {
                     </div>
                 </div>
 
-                {/* CLASSROOM */}
+                {}
                 <div className="bg-white rounded-2xl border border-gray-100 p-5 mb-5">
                     <div className="flex items-center gap-2 mb-4">
                         <div className="w-7 h-7 bg-emerald-50 rounded-lg flex items-center justify-center">
@@ -211,7 +211,7 @@ function ViewStudent({ student: s, onBack, onEdit, onDelete }) {
                     )}
                 </div>
 
-                {/* COURSE DETAIL */}
+                {}
                 <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden mb-5">
                     <div className="flex items-center gap-2 p-5 pb-4 border-b border-gray-50">
                         <div className="w-7 h-7 bg-purple-50 rounded-lg flex items-center justify-center">

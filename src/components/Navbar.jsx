@@ -242,7 +242,7 @@ function Navbar() {
         borderBottom: '1px solid rgba(255,255,255,0.06)',
       }}>
 
-        {/* ── Brand ── */}
+        {}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, width: 210, flexShrink: 0 }}>
           <div style={{
             width: 34, height: 34,
@@ -264,10 +264,10 @@ function Navbar() {
           </div>
         </div>
 
-        {/* ── Divider ── */}
+        {}
         <div style={{ width: 1, height: 22, background: 'rgba(255,255,255,0.1)', flexShrink: 0 }} />
 
-        {/* ── Search ── */}
+        {}
         <div style={{
           flex: 1,
           display: 'flex', alignItems: 'center', gap: 8,
@@ -300,23 +300,23 @@ function Navbar() {
           )}
         </div>
 
-        {/* ── Right side ── */}
+        {}
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
 
-          {/* Live clock */}
+          {}
           <TimeDisplay />
 
-          {/* Divider */}
+          {}
           <div style={{ width: 1, height: 18, background: 'rgba(255,255,255,0.1)', margin: '0 4px' }} />
 
-          {/* Messages */}
+          {}
           <IconBtn onClick={() => navigate('/messages')} title="Messages">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
             </svg>
           </IconBtn>
 
-          {/* Notifications */}
+          {}
           <div style={{ position: 'relative' }} ref={notifsRef}>
             <IconBtn
               onClick={() => { setShowNotifs(v => !v); setShowProfile(false); }}
@@ -331,7 +331,7 @@ function Navbar() {
 
             {showNotifs && (
               <div style={{ ...dropdownCard, width: 320 }}>
-                {/* Header */}
+                {}
                 <div style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   padding: '12px 16px',
@@ -356,7 +356,7 @@ function Navbar() {
                   )}
                 </div>
 
-                {/* List */}
+                {}
                 <div style={{ maxHeight: 320, overflowY: 'auto' }}>
                   {notifs.length === 0 ? (
                     <div style={{ padding: '32px 16px', textAlign: 'center' }}>
@@ -376,7 +376,7 @@ function Navbar() {
                           position: 'relative',
                         }}
                       >
-                        {/* Unread dot */}
+                        {}
                         <div style={{ paddingTop: 4, flexShrink: 0 }}>
                           <div style={{
                             width: 7, height: 7, borderRadius: '50%',
@@ -421,7 +421,7 @@ function Navbar() {
                   )}
                 </div>
 
-                {/* Footer */}
+                {}
                 <div style={{ padding: '10px 16px', borderTop: '1px solid #f1f3f9', textAlign: 'center', background: '#fafbff' }}>
                   <button
                     onClick={() => navigate('/notifications')}
@@ -432,7 +432,7 @@ function Navbar() {
             )}
           </div>
 
-          {/* Profile */}
+          {}
           <div style={{ position: 'relative' }} ref={profileRef}>
             <button
               onClick={() => { setShowProfile(v => !v); setShowNotifs(false); }}
@@ -459,7 +459,7 @@ function Navbar() {
 
             {showProfile && (
               <div style={{ ...dropdownCard, width: 220 }}>
-                {/* Profile header */}
+                {}
                 <div style={{ padding: '14px 16px', background: '#fafbff', borderBottom: '1px solid #f1f3f9' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <div style={{
@@ -474,7 +474,7 @@ function Navbar() {
                       <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 1, textTransform: 'capitalize' }}>{user.role}</div>
                     </div>
                   </div>
-                  {/* Online indicator */}
+                  {}
                   <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 10 }}>
                     <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', display: 'inline-block', boxShadow: '0 0 0 2px rgba(34,197,94,0.2)' }} />
                     <span style={{ fontSize: 10, color: '#94a3b8' }}>Online</span>

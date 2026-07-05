@@ -95,64 +95,82 @@ function Dashboard() {
     const [coursePopularity, setCoursePopularity] = useState([]);
 
     useEffect(() => {
-        Promise.all([studentAll(), showAllteacher(), getAllCourses()])
-        .then(([studentRes, teacherRes, courseRes]) => {
-            const extractArray = (res) => {
-                if (!res) return [];
-                if (Array.isArray(res)) return res;
-                let payload = res.data !== undefined ? res.data : res;
-                if (typeof payload === "string") {
-                    try {
-                        payload = JSON.parse(payload);
-                    } catch (e) {
-                        return [];
-                    }
+        let isMounted = true;
+
+        const extractArray = (res) => {
+            if (!res) return [];
+            if (Array.isArray(res)) return res;
+            let payload = res.data !== undefined ? res.data : res;
+            if (typeof payload === "string") {
+                try {
+                    payload = JSON.parse(payload);
+                } catch (e) {
+                    return [];
                 }
-                if (Array.isArray(payload)) return payload;
-                if (payload && Array.isArray(payload.data)) return payload.data;
-                if (payload && Array.isArray(payload.students)) return payload.students;
-                return [];
-            };
+            }
+            if (Array.isArray(payload)) return payload;
+            if (payload && Array.isArray(payload.data)) return payload.data;
+            if (payload && Array.isArray(payload.students)) return payload.students;
+            return [];
+        };
 
-            const students = extractArray(studentRes);
-            const teachers = extractArray(teacherRes);
-            const courses = extractArray(courseRes);
+        const loadDashboard = async () => {
+            try {
+                const [studentResult, teacherResult, courseResult] = await Promise.allSettled([
+                    studentAll(),
+                    showAllteacher(),
+                    getAllCourses(),
+                ]);
 
-            const males = students.filter((s) => ["male", "m"].includes(s?.gender?.toLowerCase())).length;
-            const females = students.filter((s) => ["female", "f"].includes(s?.gender?.toLowerCase())).length;
-            setGenderData([
-                {name: "Boys", value: males, color: "#a5b4fc"},
-                {name: "Girls", value: females, color: "#fcd34d"},
-            ]);
+                if (!isMounted) return;
 
-            let salarySum = 0;
-            teachers.forEach((t) => {
-                salarySum += parseFloat(t?.salary) || 0;
-            });
-            setTotalSalary(salarySum);
+                const students = extractArray(studentResult.status === "fulfilled" ? studentResult.value : null);
+                const teachers = extractArray(teacherResult.status === "fulfilled" ? teacherResult.value : null);
+                const courses = extractArray(courseResult.status === "fulfilled" ? courseResult.value : null);
 
-            const courseMap = {};
-            students.forEach((s) => {
-                if (!s) return;
-                const cName = s.course_name || s.course?.name || "Unassigned";
-                courseMap[cName] = (courseMap[cName] || 0) + 1;
-            });
-            setCoursePopularity(
-                Object.keys(courseMap)
-                .map((k) => ({name: k, students: courseMap[k]}))
-                .sort((a, b) => b.students - a.students)
-                .slice(0, 5)
-            );
+                const males = students.filter((s) => ["male", "m"].includes(s?.gender?.toLowerCase())).length;
+                const females = students.filter((s) => ["female", "f"].includes(s?.gender?.toLowerCase())).length;
+                setGenderData([
+                    {name: "Boys", value: males, color: "#a5b4fc"},
+                    {name: "Girls", value: females, color: "#fcd34d"},
+                ]);
 
-            setStudentCount(students.length);
-            setTeacherCount(teachers.length);
-            setClassesCount(courses.length);
-            setLoading(false);
-        })
-        .catch((err) => {
-            console.error(err);
-            setLoading(false);
-        });
+                let salarySum = 0;
+                teachers.forEach((t) => {
+                    salarySum += parseFloat(t?.salary) || 0;
+                });
+                setTotalSalary(salarySum);
+
+                const courseMap = {};
+                students.forEach((s) => {
+                    if (!s) return;
+                    const cName = s.course_name || s.course?.name || "Unassigned";
+                    courseMap[cName] = (courseMap[cName] || 0) + 1;
+                });
+                setCoursePopularity(
+                    Object.keys(courseMap)
+                        .map((k) => ({name: k, students: courseMap[k]}))
+                        .sort((a, b) => b.students - a.students)
+                        .slice(0, 5)
+                );
+
+                setStudentCount(students.length);
+                setTeacherCount(teachers.length);
+                setClassesCount(courses.length);
+            } catch (err) {
+                console.error(err);
+            } finally {
+                if (isMounted) {
+                    setLoading(false);
+                }
+            }
+        };
+
+        loadDashboard();
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
     const totalGender = genderData.reduce((a, b) => a + b.value, 0);
@@ -324,7 +342,7 @@ function Dashboard() {
                     </div>
                 </div>
 
-                {/* Course Bar Chart */}
+                {}
                 <div
                     style={{
                         flex: 1,
@@ -425,9 +443,9 @@ function Dashboard() {
                     </div>
                 </div>
 
-                {/* Calendar + Agenda */}
+                {}
                 <div style={{width: 290, flexShrink: 0, display: "flex", flexDirection: "column", gap: 16}}>
-                    {/* Mini Calendar */}
+                    {}
                     <div
                         style={{
                             background: "#fff",

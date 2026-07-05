@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-// ── Nav item config (Can also be moved to a separate navConfig.js file) ── 
+
 const NAV = [
     {
         section: "Overview",
@@ -224,17 +224,17 @@ function Sidebar() {
     const userRole = user?.role || "STUDENT";
 
     const handleLogout = () => {
-        localStorage.clear(); // Safely clear all properties at once
+        localStorage.clear(); 
         navigate("/login");
     };
 
-    // ⚙️ Process and filter items safely based on authenticated context role
+    
     const filteredNav = NAV.filter(group => group.allowedRoles.includes(userRole))
         .map(group => ({
             ...group,
             items: group.items.filter(item => item.allowedRoles.includes(userRole))
         }))
-        .filter(group => group.items.length > 0); // Drop the entire group header if its sub-items list is empty
+        .filter(group => group.items.length > 0); 
 
     return (
         <aside
@@ -242,7 +242,7 @@ function Sidebar() {
                 collapsed ? "w-16" : "w-56"
             } bg-[#0f1e3c] flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out overflow-hidden border-r border-white/5`}
         >
-            {/* Collapse toggle */}
+            {}
             <div className="flex items-center justify-end p-3">
                 <button
                     onClick={() => setCollapsed(!collapsed)}
@@ -261,21 +261,21 @@ function Sidebar() {
                 </button>
             </div>
 
-            {/* Nav Links Ecosystem Container */}
+            {}
             <nav className="flex-1 overflow-y-auto pb-4 scrollbar-none space-y-4">
                 {filteredNav.map((group, groupIdx) => (
                     <div key={group.section} className="px-2">
-                        {/* Section Header Labels */}
+                        {}
                         {!collapsed ? (
                             <p className="text-[10px] font-bold tracking-wider text-white/20 uppercase px-3 mb-1 select-none">
                                 {group.section}
                             </p>
                         ) : (
-                            // Subtle line breakout representation for cleaner layout structures on collapse
+                            
                             groupIdx > 0 && <div className="mx-2 my-3 h-px bg-white/5" />
                         )}
 
-                        {/* Navigation Sub-items loop */}
+                        {}
                         <div className="space-y-0.5">
                             {group.items.map((item) => (
                                 <NavLink
@@ -291,17 +291,17 @@ function Sidebar() {
                                 >
                                     {({ isActive }) => (
                                         <>
-                                            {/* Left Anchor Pill Indicator Accent */}
+                                            {}
                                             {isActive && (
                                                 <span className="absolute left-0 top-2 bottom-2 w-[3px] bg-[#e8a838] rounded-r-md" />
                                             )}
 
-                                            {/* Vector graphic Icon mapping wrapper */}
+                                            {}
                                             <span className={`flex-shrink-0 transition-colors ${isActive ? "text-[#e8a838]" : "text-white/50 group-hover:text-white/80"}`}>
                                                 {item.icon}
                                             </span>
 
-                                            {/* Main text content + Dynamic Notifications counters */}
+                                            {}
                                             {!collapsed ? (
                                                 <>
                                                     <span className="flex-1 truncate">{item.label}</span>
@@ -312,7 +312,7 @@ function Sidebar() {
                                                     )}
                                                 </>
                                             ) : (
-                                                /* Standalone hover hint overlays for tight compact screens viewport modes */
+                                                
                                                 <span className="pointer-events-none absolute left-full ml-4 px-2.5 py-1.5 bg-[#1a3260] text-white text-xs font-normal rounded-md shadow-xl border border-white/5 opacity-0 translate-x-[-10px] group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap z-50">
                                                     {item.label}
                                                     {item.badge && ` (${item.badge})`}
@@ -327,7 +327,7 @@ function Sidebar() {
                 ))}
             </nav>
 
-            {/* Logout Footer Section */}
+            {}
             <div className="p-2 border-t border-white/5">
                 <button
                     onClick={handleLogout}

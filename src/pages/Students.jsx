@@ -30,7 +30,7 @@ const getAvatarColor = (name = "") => {
 
 const initials = (first = "", last = "") => `${first[0] ?? ""}${last[0] ?? ""}`.toUpperCase() || "?";
 
-// ── Icons ────────────────────────────────────────────────────────────────────
+
 const SearchIcon = () => (
     <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -225,7 +225,7 @@ function Students() {
 
     const safeStudents = Array.isArray(students) ? students : [];
 
-    // Collect unique grade labels
+    
     const allGrades = [...new Set(safeStudents.map((s) => s?.clazz?.grade || s?.grade).filter(Boolean))].sort();
 
     const filtered = safeStudents.filter((s) => {
@@ -287,7 +287,7 @@ function Students() {
     return (
         <div className="min-h-screen bg-gray-50 p-8">
             <div className="max-w-6xl mx-auto">
-                {/* HEADER */}
+                {}
                 <div className="flex justify-between items-start mb-6">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">Students</h1>
@@ -302,7 +302,7 @@ function Students() {
                     </button>
                 </div>
 
-                {/* TOOLBAR */}
+                {}
                 <div className="flex gap-3 mb-5">
                     <div className="relative flex-1">
                         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
@@ -330,7 +330,7 @@ function Students() {
                     </select>
                 </div>
 
-                {/* TABLE */}
+                {}
                 {loading ? (
                     <div className="flex justify-center items-center h-48">
                         <div className="w-8 h-8 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin" />
@@ -378,7 +378,7 @@ function Students() {
                                                 className="hover:bg-gray-50 transition-colors cursor-pointer"
                                                 onClick={() => setSelectedStudent(s)}
                                             >
-                                                {/* Student */}
+                                                {}
                                                 <td className="px-5 py-3.5">
                                                     <div className="flex items-center gap-3">
                                                         <div
@@ -400,7 +400,7 @@ function Students() {
                                                     </div>
                                                 </td>
 
-                                                {/* Grade / Class */}
+                                                {}
                                                 <td className="px-5 py-3.5">
                                                     {grade && (
                                                         <div className="text-sm font-semibold text-gray-800">
@@ -415,7 +415,7 @@ function Students() {
                                                     )}
                                                 </td>
 
-                                                {/* Contact */}
+                                                {}
                                                 <td className="px-5 py-3.5">
                                                     {studentEmail && (
                                                         <div className="flex items-center gap-1.5 text-xs text-blue-600 mb-1">
@@ -434,7 +434,7 @@ function Students() {
                                                     )}
                                                 </td>
 
-                                                {/* Parent */}
+                                                {}
                                                 <td className="px-5 py-3.5">
                                                     {parentName && (
                                                         <div className="text-sm font-medium text-gray-800">
@@ -451,7 +451,7 @@ function Students() {
                                                     )}
                                                 </td>
 
-                                                {/* Status */}
+                                                {}
                                                 <td className="px-5 py-3.5">
                                                     <span
                                                         className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${
@@ -464,7 +464,7 @@ function Students() {
                                                     </span>
                                                 </td>
 
-                                                {/* Actions */}
+                                                {}
                                                 <td className="px-5 py-3.5">
                                                     <div
                                                         className="flex items-center gap-2"
@@ -499,7 +499,7 @@ function Students() {
                             )}
                         </div>
 
-                        {/* PAGINATION */}
+                        {}
                         {totalPages > 1 && (
                             <div className="flex items-center justify-between mt-4">
                                 <p className="text-xs text-gray-500">
@@ -559,7 +559,7 @@ function Students() {
                 )}
             </div>
 
-            {/* MODAL */}
+            {}
             {isOpen && (
                 <div
                     className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4"

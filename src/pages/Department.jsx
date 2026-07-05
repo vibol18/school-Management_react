@@ -74,7 +74,7 @@ function Department() {
         }
     };
 
-    // SEARCH
+    
     const filtered = departments.filter((d) => {
         const q = search.toLowerCase();
         return (
@@ -83,7 +83,7 @@ function Department() {
         );
     });
 
-    // PAGINATION
+    
     const totalPages = Math.ceil(filtered.length / pageSize);
     const paginated = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
@@ -107,7 +107,7 @@ function Department() {
         return pages;
     };
 
-    // AVATAR COLOR per department id
+    
     const avatarColors = [
         "bg-blue-100 text-blue-600",
         "bg-purple-100 text-purple-600",
@@ -121,7 +121,7 @@ function Department() {
         <div className="min-h-screen bg-gray-50 p-8">
             <div className="max-w-6xl mx-auto">
 
-                {/* HEADER */}
+                {}
                 <div className="flex items-center justify-between mb-6">
                     <div>
                         <h1 className="text-2xl font-semibold text-gray-900">Departments</h1>
@@ -138,7 +138,7 @@ function Department() {
                     </button>
                 </div>
 
-                {/* STATS */}
+                {}
                 <div className="grid grid-cols-3 gap-4 mb-6">
                     <div className="bg-white rounded-xl border border-gray-100 p-4">
                         <p className="text-xs text-gray-500 mb-1">Total departments</p>
@@ -156,7 +156,7 @@ function Department() {
                     </div>
                 </div>
 
-                {/* SEARCH */}
+                {}
                 <div className="relative mb-6">
                     <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -170,7 +170,7 @@ function Department() {
                     />
                 </div>
 
-                {/* CONTENT */}
+                {}
                 {loading ? (
                     <div className="flex justify-center items-center h-48">
                         <div className="w-8 h-8 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin" />
@@ -194,10 +194,10 @@ function Department() {
                                             key={d.id}
                                             className="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md transition-all duration-200 flex flex-col justify-between group"
                                         >
-                                            {/* TOP ROW */}
+                                            {}
                                             <div>
                                                 <div className="flex items-start gap-3 mb-3">
-                                                    {/* AVATAR */}
+                                                    {}
                                                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold shrink-0 ${colorClass}`}>
                                                         {initial}
                                                     </div>
@@ -214,13 +214,13 @@ function Department() {
                                                     </div>
                                                 </div>
 
-                                                {/* DESCRIPTION */}
+                                                {}
                                                 <p className="text-xs text-gray-500 leading-relaxed line-clamp-3 min-h-[48px] bg-gray-50 rounded-lg px-3 py-2">
                                                     {d.description || "No description provided for this department."}
                                                 </p>
                                             </div>
 
-                                            {/* ACTIONS */}
+                                            {}
                                             <div className="flex items-center gap-2 border-t border-gray-100 pt-3 mt-4">
                                                 <button
                                                     onClick={() => handleEdit(d)}
@@ -249,7 +249,7 @@ function Department() {
                             </div>
                         )}
 
-                        {/* PAGINATION */}
+                        {}
                         {totalPages > 1 && (
                             <div className="flex items-center justify-between mt-6">
                                 <p className="text-xs text-gray-500">
@@ -307,7 +307,7 @@ function Department() {
                 )}
             </div>
 
-            {/* MODAL */}
+            {}
             {isOpen && (
                 <div
                     className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4"

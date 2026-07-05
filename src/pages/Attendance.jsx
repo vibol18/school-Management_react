@@ -63,7 +63,7 @@ function Attendance() {
         }
     };
 
-    // Calculate live aggregates for the sub-header row
+    
     const totalCount = attendances.length;
     const presentCount = attendances.filter(a => a.status === "PRESENT").length;
     const absentCount = attendances.filter(a => a.status === "ABSENT").length;
@@ -108,7 +108,7 @@ function Attendance() {
         }
     };
 
-    // Fast inline status updating directly from row action triggers
+    
     const handleQuickStatusChange = async (record, newStatus) => {
         const payload = {
             studentId: Number(record.studentId),
@@ -148,13 +148,13 @@ function Attendance() {
         }
     };
 
-    // Filter list based on search bar value
+    
     const filteredAttendances = attendances.filter(a => 
         a.studentName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         a.id?.toString().includes(searchTerm)
     );
 
-    // Dynamic initial helper fallback for profile views
+    
     const getInitials = (name = "") => {
         return name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
     };
@@ -163,7 +163,7 @@ function Attendance() {
         <div className="min-h-screen bg-[#f8fafc] p-6 font-sans">
             <div className="max-w-7xl mx-auto bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                 
-                {/* ── SCREENSHOT MAIN ACTION HEADER ── */}
+                {}
                 <div className="p-6 border-b border-gray-100 space-y-4">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div>
@@ -199,7 +199,7 @@ function Attendance() {
                         </div>
                     </div>
 
-                    {/* FILTER SEARCH BAR */}
+                    {}
                     <div className="relative max-w-xs">
                         <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
@@ -214,7 +214,7 @@ function Attendance() {
                     </div>
                 </div>
 
-                {/* ── RENDER MOCKUP DATATABLE ── */}
+                {}
                 <div className="overflow-x-auto">
                     {loading ? (
                         <div className="flex flex-col justify-center items-center h-64 gap-3">
@@ -251,7 +251,7 @@ function Attendance() {
                                             </div>
                                         </td>
                                         
-                                        {/* Status & Quick Action Buttons */}
+                                        {}
                                         <td className="px-4 py-3.5">
                                             <div className="flex items-center gap-1.5">
                                                 {a.status === "PRESENT" ? (
@@ -268,7 +268,7 @@ function Attendance() {
                                                     </span>
                                                 )}
                                                 
-                                                {/* QUICK FLIP SWITCH CONTROLS */}
+                                                {}
                                                 <div className="opacity-0 group-hover:opacity-100 flex items-center gap-1 transition pl-1">
                                                     <button 
                                                         onClick={() => handleQuickStatusChange(a, "PRESENT")}
@@ -288,12 +288,12 @@ function Attendance() {
                                             </div>
                                         </td>
                                         
-                                        {/* Min Delay column field */}
+                                        {}
                                         <td className="px-4 py-3.5 text-xs font-medium text-slate-700">
                                             {a.status === "LATE" ? "10 min" : "0"}
                                         </td>
                                         
-                                        {/* Inline Reason Note field rendering mockup template elements */}
+                                        {}
                                         <td className="px-4 py-3.5">
                                             <input 
                                                 type="text" 
@@ -304,7 +304,7 @@ function Attendance() {
                                             />
                                         </td>
 
-                                        {/* Operational Table Crud Row Trigger Group UI */}
+                                        {}
                                         <td className="px-6 py-3.5 text-right">
                                             <div className="flex items-center justify-end gap-1">
                                                 <button

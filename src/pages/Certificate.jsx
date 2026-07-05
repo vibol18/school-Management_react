@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-// នាំចូល (Import) CertificateTemplate ដែលបានបង្កើតពីជំហានមុន
+
 import CertificateTemplate from "./CertificateTemplate"; 
 
 import {
@@ -24,7 +24,7 @@ function Certificate() {
     const [isOpen, setIsOpen] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
     
-    // State សម្រាប់បើកមើលព័ត៌មានលម្អិត (View Detail)
+    
     const [isDetailOpen, setIsDetailOpen] = useState(false);
     const [selectedCertificate, setSelectedCertificate] = useState(null);
 
@@ -36,7 +36,7 @@ function Certificate() {
         studentId: "",
         courseId: "",
         issueDate: "",
-        grade: "", // បង្កើតជា String ទទេជាលំនាំដើម
+        grade: "", 
         remark: ""
     });
 
@@ -96,14 +96,14 @@ function Certificate() {
             studentId: c.studentId || "",         
             courseId: c.courseId || "",           
             issueDate: c.issueDate || "",
-            grade: c.grade || "", // ធានាថាវាមិនមែនជា null ដើម្បីកុំឱ្យគាំង Input Box
+            grade: c.grade || "", 
             remark: c.remark || ""
         });
         setIsEdit(true);
         setIsOpen(true);
     };
 
-    // មុខងារសម្រាប់បើកមើល Detail និងបង្ហាញរូបភាព Certificate
+    
     const handleViewDetail = (c) => {
         setSelectedCertificate(c);
         setIsDetailOpen(true);
@@ -127,7 +127,7 @@ function Certificate() {
             studentId: form.studentId === "" ? null : Number(form.studentId),
             courseId: form.courseId === "" ? null : Number(form.courseId),
             issueDate: form.issueDate === "" ? null : form.issueDate,
-            grade: form.grade.trim() === "" ? null : form.grade, // បើទទេផ្ញើទៅ API ជា null
+            grade: form.grade.trim() === "" ? null : form.grade, 
             remark: form.remark || null
         };
 
@@ -164,7 +164,7 @@ function Certificate() {
         <div className="min-h-screen bg-gray-50 p-8">
             <div className="max-w-7xl mx-auto">
 
-                {/* HEADER */}
+                {}
                 <div className="flex items-center justify-between mb-6">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">Certificates</h1>
@@ -178,7 +178,7 @@ function Certificate() {
                     </button>
                 </div>
 
-                {/* SEARCH */}
+                {}
                 <div className="mb-5">
                     <input
                         type="text"
@@ -189,7 +189,7 @@ function Certificate() {
                     />
                 </div>
 
-                {/* TABLE */}
+                {}
                 <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
                     {loading ? (
                         <div className="p-10 text-center text-gray-400">Loading...</div>
@@ -247,7 +247,7 @@ function Certificate() {
                 </div>
             </div>
 
-            {/* FORM MODAL (CREATE / EDIT) */}
+            {}
             {isOpen && (
                 <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
                     <div className="bg-white rounded-2xl w-full max-w-lg overflow-hidden shadow-xl">
@@ -314,7 +314,7 @@ function Certificate() {
                                 <input
                                     type="text"
                                     value={form.grade}
-                                    onChange={(e) => setForm({ ...form, grade: e.target.value })} // បានបន្ថែម onChange ដើម្បីឱ្យវាយបញ្ចូលកើត
+                                    onChange={(e) => setForm({ ...form, grade: e.target.value })} 
                                     placeholder="A+"
                                     className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm"
                                 />

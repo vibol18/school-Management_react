@@ -20,15 +20,15 @@ function Register() {
     phone: '',
     classId: '',
     courseId: '',
-    role: 'STUDENT' // Defaults to STUDENT
+    role: 'STUDENT' 
   });
 
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
-  // =========================
-  // LIVE API DATA FETCH
-  // =========================
+  
+  
+  
   useEffect(() => {
     const fetchLiveDropdownData = async () => {
       try {
@@ -54,13 +54,13 @@ function Register() {
     fetchLiveDropdownData();
   }, []);
 
-  // =========================
-  // CHANGE HANDLER
-  // =========================
+  
+  
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     
-    // Clear dependencies if role switches away from student
+    
     if (name === 'role' && value !== 'STUDENT') {
       setFormData((prev) => ({
         ...prev,
@@ -76,16 +76,16 @@ function Register() {
     }
   };
 
-  // =========================
-  // SUBMIT HANDLER
-  // =========================
+  
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
     setError('');
 
     try {
-      // Build tailored payload based on the entity processing rules of your backend
+      
       const payload = {
         ...formData,
         classId: formData.role === 'STUDENT' && formData.classId ? Number(formData.classId) : null,
@@ -117,7 +117,7 @@ function Register() {
     }
   };
 
-  // Modern UI Styles
+  
   const formGroupStyle = { marginBottom: '16px' };
   const labelStyle = { display: 'block', marginBottom: '6px', fontWeight: '500', color: '#333', fontSize: '14px' };
   const inputStyle = {
@@ -161,7 +161,7 @@ function Register() {
 
       <form onSubmit={handleSubmit}>
         
-        {/* ROLE SELECT - Moved up to change the visible fields early */}
+        {}
         <div style={formGroupStyle}>
           <label style={labelStyle}>Account Role</label>
           <select
@@ -176,7 +176,7 @@ function Register() {
           </select>
         </div>
 
-        {/* USERNAME */}
+        {}
         <div style={formGroupStyle}>
           <label style={labelStyle}>Username</label>
           <input
@@ -190,7 +190,7 @@ function Register() {
           />
         </div>
 
-        {/* EMAIL */}
+        {}
         <div style={formGroupStyle}>
           <label style={labelStyle}>Email Address</label>
           <input
@@ -204,7 +204,7 @@ function Register() {
           />
         </div>
 
-        {/* PASSWORD */}
+        {}
         <div style={formGroupStyle}>
           <label style={labelStyle}>Password</label>
           <input
@@ -218,7 +218,7 @@ function Register() {
           />
         </div>
 
-        {/* FIRST NAME & LAST NAME ROW */}
+        {}
         <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
           <div style={{ flex: 1 }}>
             <label style={labelStyle}>First Name</label>
@@ -244,7 +244,7 @@ function Register() {
           </div>
         </div>
 
-        {/* PHONE */}
+        {}
         <div style={formGroupStyle}>
           <label style={labelStyle}>Phone Number</label>
           <input
@@ -257,10 +257,10 @@ function Register() {
           />
         </div>
 
-        {/* DYNAMIC RELATIONAL INPUT BLOCKS FOR STUDENTS ONLY */}
+        {}
         {formData.role === 'STUDENT' && (
           <>
-            {/* CLASS SELECT */}
+            {}
             <div style={formGroupStyle}>
               <label style={labelStyle}>Assigned Class</label>
               <select
@@ -280,7 +280,7 @@ function Register() {
               </select>
             </div>
 
-            {/* COURSE SELECT */}
+            {}
             <div style={formGroupStyle}>
               <label style={labelStyle}>Course Track Blueprint</label>
               <select
@@ -302,7 +302,7 @@ function Register() {
           </>
         )}
 
-        {/* SUBMIT BUTTON */}
+        {}
         <button
           type="submit"
           disabled={loading}

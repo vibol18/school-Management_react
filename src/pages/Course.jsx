@@ -114,7 +114,7 @@ function Course() {
     <div className="bg-gray-100 p-6 font-sans min-h-screen">
       <div className="max-w-7xl mx-auto">
         
-        {/* HEADER SECTION */}
+        {}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div>
             <h1 className="text-xl font-bold text-gray-900">Course Catalogue</h1>
@@ -143,7 +143,7 @@ function Course() {
           </div>
         </div>
 
-        {/* LOADING INDICATOR */}
+        {}
         {loading ? (
           <div className="flex flex-col justify-center items-center h-64 gap-2">
             <span className="text-xs text-gray-500 font-medium">Loading courses syllabus...</span>
@@ -153,12 +153,12 @@ function Course() {
             <p className="text-sm text-gray-500 font-medium">No courses found matching criteria.</p>
           </div>
         ) : (
-          /* COURSE CARD GRID */
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCourses.map((c) => (
               <div key={c.id} className="bg-white rounded border border-gray-300 overflow-hidden flex flex-col">
                 
-                {/* COURSE COVER IMAGE */}
+                {}
                 <div className="h-44 w-full bg-gray-200 relative">
                   <img 
                     src={c.imageUrl || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop"} 
@@ -185,20 +185,20 @@ function Course() {
                   </div>
                 </div>
 
-                {/* CONTENT TRACK CARD BODY */}
+                {}
                 <div className="p-4 flex-1 flex flex-col justify-between space-y-4">
                   <div className="space-y-1">
                     <h2 className="font-bold text-sm text-gray-900">{c.name}</h2>
                     <p className="text-xs text-gray-500 leading-normal">{c.description || "No program overview synopsis has been specified for this syllabus course tract yet."}</p>
                     
-                    {/* TIMING CONFIGURATION META */}
+                    {}
                     <div className="flex items-center text-gray-500 text-[11px] gap-1 pt-1">
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                       Duration: <span className="text-gray-900 font-bold">{c.duration || 'N/A'}</span>
                     </div>
                   </div>
 
-                  {/* CURRICULUM DISPLAY */}
+                  {}
                   <div className="space-y-1">
                     <p className="text-[10px] uppercase font-bold text-gray-400">Curriculum Scope</p>
                     <div className="flex flex-wrap gap-1">
@@ -214,7 +214,7 @@ function Course() {
                     </div>
                   </div>
 
-                  {/* CONTROL BAR INTERFACES */}
+                  {}
                   <div className="flex items-center gap-2 pt-2 border-t border-gray-200">
                     <button 
                       onClick={() => handleEdit(c)}
@@ -239,7 +239,7 @@ function Course() {
         )}
       </div>
 
-      {/* OPERATIONAL CRUD MODAL */}
+      {}
       {isOpen && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded w-full max-w-md overflow-hidden border border-gray-300">

@@ -11,9 +11,9 @@ import { getClasses } from "../Service/classService";
 import { getAllCourses } from "../Service/courseService";
 
 function TimeTable() {
-    // =========================
-    // STATE MANAGEMENT
-    // =========================
+    
+    
+    
     const [timeTables, setTimeTables] = useState([]);
     const [classes, setClasses] = useState([]);
     const [courses, setCourses] = useState([]);
@@ -34,7 +34,7 @@ function TimeTable() {
         room: ""
     });
 
-    // Hardcoded structure definitions for rendering the grid matrix
+    
     const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const timeSlots = [
         { label: "08:00 - 09:30", start: "08:00" },
@@ -43,7 +43,7 @@ function TimeTable() {
         { label: "15:15 - 16:45", start: "15:15" }
     ];
 
-    // Dynamic Tailwind color tags based on course names or IDs to look visually unique
+    
     const getColorClass = (courseId) => {
         const colors = [
             "bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100/70",
@@ -56,9 +56,9 @@ function TimeTable() {
         return colors[Number(courseId) % colors.length] || colors[0];
     };
 
-    // =========================
-    // EFFECTS & DATA FETCHING
-    // =========================
+    
+    
+    
     useEffect(() => {
         fetchTimeTables();
         fetchClasses();
@@ -94,9 +94,9 @@ function TimeTable() {
         }
     };
 
-    // =========================
-    // FORM CONTROL ACTIONS
-    // =========================
+    
+    
+    
     const openCreate = (defaultDay = "", defaultStart = "") => {
         setForm({
             id: null,
@@ -112,7 +112,7 @@ function TimeTable() {
     };
 
     const handleEdit = (t, e) => {
-        e.stopPropagation(); // Stop parent clicks when clicking the explicit inner edit label
+        e.stopPropagation(); 
         setForm({
             id: t.id,
             classId: t.classId || "",
@@ -152,9 +152,9 @@ function TimeTable() {
         }
     };
 
-    // =========================
-    // MATRIX MATRIX GRID FILTER LOGIC
-    // =========================
+    
+    
+    
     const getLessonForSlot = (day, slotStart) => {
         return timeTables.find((t) => {
             const matchDay = t.dayOfWeek?.toLowerCase() === day.toLowerCase();
@@ -168,7 +168,7 @@ function TimeTable() {
         <div className="min-h-screen bg-[#f8fafc] p-6 font-sans">
             <div className="max-w-7xl mx-auto">
                 
-                {/* ── HEADER CONTROL PANEL ── */}
+                {}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                     <div>
                         <h1 className="text-2xl font-bold text-[#0f1e3c] tracking-tight">Time Table Matrix</h1>
@@ -176,7 +176,7 @@ function TimeTable() {
                     </div>
 
                     <div className="flex items-center gap-3 self-start md:self-auto">
-                        {/* Dynamic Class Filter Dropdown */}
+                        {}
                         <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-gray-200 shadow-xs">
                             <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Class Filter:</span>
                             <select
@@ -205,7 +205,7 @@ function TimeTable() {
                     </div>
                 </div>
 
-                {/* ── VISUAL SCHEDULE MATRIX GRID ── */}
+                {}
                 <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
                     {loading ? (
                         <div className="p-20 text-center text-sm font-medium text-gray-400">
@@ -230,7 +230,7 @@ function TimeTable() {
                                 <tbody className="divide-y divide-slate-100">
                                     {timeSlots.map((slot) => (
                                         <tr key={slot.label} className="group">
-                                            {/* Time column label spacing block */}
+                                            {}
                                             <td className="p-4 text-center bg-slate-50/30 border-r border-gray-50 group-hover:bg-slate-50 transition duration-150">
                                                 <span className="text-xs font-extrabold text-slate-700 block font-mono">
                                                     {slot.label.split(" - ")[0]}
@@ -240,13 +240,13 @@ function TimeTable() {
                                                 </span>
                                             </td>
 
-                                            {/* Mapping Columns out dynamically to grid matrix indices */}
+                                            {}
                                             {daysOfWeek.map((day) => {
                                                 const lesson = getLessonForSlot(day, slot.start);
                                                 return (
                                                     <td key={day} className="p-2 border-r border-slate-100 align-top relative min-h-[115px]">
                                                         {lesson ? (
-                                                            /* Populated Matrix Grid Card Frame */
+                                                            
                                                             <div className={`p-3 rounded-xl border transition duration-200 h-full flex flex-col justify-between space-y-3 relative group/card ${getColorClass(lesson.courseId)}`}>
                                                                 <div>
                                                                     <div className="flex items-start justify-between gap-1">
@@ -267,7 +267,7 @@ function TimeTable() {
                                                                 <div className="flex items-center justify-between pt-1.5 border-t border-black/5 text-[9px] font-bold opacity-70">
                                                                     <span className="font-mono">{lesson.startTime} - {lesson.endTime}</span>
                                                                     
-                                                                    {/* Action triggers built cleanly inside element cards */}
+                                                                    {}
                                                                     <div className="flex gap-1 ml-2">
                                                                         <button 
                                                                             onClick={(e) => handleEdit(lesson, e)}
@@ -285,7 +285,7 @@ function TimeTable() {
                                                                 </div>
                                                             </div>
                                                         ) : (
-                                                            /* Clickable interactive blueprint slot layout block */
+                                                            
                                                             <div 
                                                                 onClick={() => openCreate(day, slot.start)}
                                                                 className="w-full h-full min-h-[85px] rounded-xl border border-dashed border-transparent hover:border-slate-200 hover:bg-slate-50/70 transition duration-150 flex items-center justify-center group/cell cursor-pointer"
@@ -307,7 +307,7 @@ function TimeTable() {
                 </div>
             </div>
 
-            {/* ── UNIFIED CONFIGURATION INTERACTION MODAL ── */}
+            {}
             {isOpen && (
                 <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 z-50">
                     <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden border border-slate-100 animate-in fade-in zoom-in-95 duration-150">
@@ -319,7 +319,7 @@ function TimeTable() {
                         </div>
 
                         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-                            {/* SELECT TARGET TARGET CLASS */}
+                            {}
                             <div>
                                 <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Target Class</label>
                                 <select
@@ -335,7 +335,7 @@ function TimeTable() {
                                 </select>
                             </div>
 
-                            {/* SELECT ASSIGNED COURSE */}
+                            {}
                             <div>
                                 <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Assigned Course</label>
                                 <select
@@ -404,7 +404,7 @@ function TimeTable() {
                                 />
                             </div>
 
-                            {/* MODAL ACTION INTERFACES BUTTONS */}
+                            {}
                             <div className="flex gap-3 pt-3">
                                 <button
                                     type="button"

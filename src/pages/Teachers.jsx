@@ -207,7 +207,7 @@ function Teachers() {
     return (
         <div className="min-h-screen bg-gray-50 p-8">
             <div className="max-w-6xl mx-auto">
-                {/* HEADER */}
+                {}
                 <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
                     <h1 className="text-3xl font-bold text-gray-900">Teachers</h1>
 
@@ -254,7 +254,7 @@ function Teachers() {
                     </div>
                 </div>
 
-                {/* FILTER TABS */}
+                {}
                 <div className="flex items-center gap-2 mb-6 flex-wrap">
                     {filterTabs.map((tab) => (
                         <button
@@ -271,7 +271,7 @@ function Teachers() {
                     ))}
                 </div>
 
-                {/* CARDS */}
+                {}
                 {loading ? (
                     <div className="flex justify-center items-center h-48">
                         <div className="w-8 h-8 border-4 border-gray-200 border-t-indigo-600 rounded-full animate-spin" />
@@ -298,21 +298,21 @@ function Teachers() {
                             </div>
                         ) : (
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                                {paginated.map((t) => {
-                                    const avatar = getAvatarColor(t.id);
+                                {paginated.map((t, idx) => {
+                                    const avatar = getAvatarColor(t.id ?? idx);
                                     return (
                                         <div
-                                            key={t.id}
+                                            key={t.id ?? t.teacherCode ?? t.email ?? `teacher-${idx}`}
                                             className="bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-lg transition-all duration-200 flex flex-col items-center text-center"
                                         >
-                                            {/* AVATAR */}
+                                            {}
                                             <div
                                                 className={`w-16 h-16 rounded-full ${avatar.bg} ${avatar.text} flex items-center justify-center text-xl font-bold mb-3`}
                                             >
                                                 {getInitials(t)}
                                             </div>
 
-                                            {/* NAME */}
+                                            {}
                                             <p className="text-lg font-bold text-gray-900">
                                                 {t.firstName} {t.lastName}
                                             </p>
@@ -320,7 +320,7 @@ function Teachers() {
                                                 {t.departmentName || "Unassigned"}
                                             </p>
 
-                                            {/* EMPLOYMENT TYPE BADGE */}
+                                            {}
                                             <span
                                                 className={`text-xs font-semibold px-3 py-1 rounded-full mb-4 ${employmentBadgeClass(
                                                     t.employmentType
@@ -329,7 +329,7 @@ function Teachers() {
                                                 {formatEmploymentType(t.employmentType)}
                                             </span>
 
-                                            {/* STATS BOX */}
+                                            {}
                                             <div className="w-full bg-gray-50 rounded-xl px-4 py-3 grid grid-cols-2 gap-y-3 text-left mb-4">
                                                 <div>
                                                     <p className="text-xs text-gray-400 mb-0.5">Code</p>
@@ -357,7 +357,7 @@ function Teachers() {
                                                 </div>
                                             </div>
 
-                                            {/* ACTION BUTTONS */}
+                                            {}
                                             <div className="flex items-center gap-2 w-full">
                                                 <button
                                                     onClick={() => handleEdit(t)}
@@ -386,7 +386,7 @@ function Teachers() {
                             </div>
                         )}
 
-                        {/* PAGINATION */}
+                        {}
                         {totalPages > 1 && (
                             <div className="flex items-center justify-between mt-6">
                                 <p className="text-xs text-gray-500">
@@ -446,7 +446,7 @@ function Teachers() {
                 )}
             </div>
 
-            {/* MODAL */}
+            {}
             {isOpen && (
                 <div
                     className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4"
@@ -465,7 +465,7 @@ function Teachers() {
                         </div>
 
                         <form onSubmit={handleSubmit} className="p-6 space-y-4">
-                            {/* Row 1: Code + Email */}
+                            {}
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-1.5">Teacher code</label>
@@ -490,7 +490,7 @@ function Teachers() {
                                 </div>
                             </div>
 
-                            {/* Row 2: First + Last name */}
+                            {}
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-1.5">First name</label>
@@ -516,7 +516,7 @@ function Teachers() {
                                 </div>
                             </div>
 
-                            {/* Row 3: Salary + Experience */}
+                            {}
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-1.5">Salary ($)</label>
@@ -542,7 +542,7 @@ function Teachers() {
                                 </div>
                             </div>
 
-                            {/* Row 4: Department + Employment type */}
+                            {}
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-1.5">Department</label>
@@ -573,7 +573,7 @@ function Teachers() {
                                 </div>
                             </div>
 
-                            {/* Actions */}
+                            {}
                             <div className="flex gap-3 pt-2">
                                 <button
                                     type="button"

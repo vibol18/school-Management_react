@@ -26,11 +26,11 @@ function Classes() {
 
     const fetchData = async () => {
         try {
-            // 1. Fetch Class Modules data payload
+            
             const res = await getClasses();
             const rawData = Array.isArray(res.data) ? res.data : res.data?.content || [];
 
-            // 2. Fetch all scheduled exam records from the database endpoint
+            
             let allExams = [];
             try {
                 const examRes = await getExams();
@@ -39,7 +39,7 @@ function Classes() {
                 console.error("Failed to load global exams manifest from server architecture:", e);
             }
 
-            // 3. Thread-safe dynamic aggregation mapping pipeline
+            
             const updatedClasses = await Promise.all(
                 rawData.map(async (c) => {
                     let studentCount = 0;
@@ -50,7 +50,7 @@ function Classes() {
                         studentCount = 0;
                     }
 
-                    // 🛠️ MULTI-STRATEGY MATCH FIX: Checks for both relational object tracking keys or flat primitive ID maps
+                    
                     const classExams = allExams.filter((exam) => {
                         const matchesNestedObject = exam.classRoom && exam.classRoom.id === c.id;
                         const matchesFlatForeignId = Number(exam.classRoomId) === c.id;
@@ -72,21 +72,21 @@ function Classes() {
         }
     };
 
-    // OPEN CREATE
+    
     const openCreate = () => {
         setForm({id: null, name: "", roomNumber: "", section: ""});
         setIsEdit(false);
         setIsOpen(true);
     };
 
-    // EDIT
+    
     const handleEdit = (item) => {
         setForm(item);
         setIsEdit(true);
         setIsOpen(true);
     };
 
-    // DELETE
+    
     const handleDelete = async (id) => {
         if (confirm("Are you sure you want to delete this track context class?")) {
             try {
@@ -117,7 +117,7 @@ function Classes() {
 
     return (
         <div className="p-6 max-w-7xl mx-auto min-h-screen bg-[#f8fafc] font-sans">
-            {/* HEADER SECTION */}
+            {}
             <div className="flex justify-between items-center mb-6">
                 <div>
                     <h1 className="text-2xl font-bold text-[#0f1e3c] tracking-tight">Classes</h1>
@@ -137,7 +137,7 @@ function Classes() {
                 </button>
             </div>
 
-            {/* SEARCH INTERFACE BAR */}
+            {}
             <input
                 className="border border-gray-200 bg-white rounded-xl p-2.5 w-full mb-6 text-xs font-medium focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none shadow-xs transition-all"
                 placeholder="Search class track by descriptive name..."
@@ -145,7 +145,7 @@ function Classes() {
                 onChange={(e) => setSearch(e.target.value)}
             />
 
-            {/* BOX GRID LAYOUT */}
+            {}
             {filtered.length === 0 ? (
                 <div className="text-center py-12 text-gray-400 bg-white rounded-2xl border border-dashed border-gray-200 shadow-xs text-xs font-medium">
                     No active classroom modules match your current filter rules.
@@ -177,7 +177,7 @@ function Classes() {
                                     </span>
                                 </p>
 
-                                {/* ── EXAMS DISPLAY BOX SECTION ── */}
+                                {}
                                 <div className="mt-2 mb-4" onClick={(e) => e.stopPropagation()}>
                                     <span className="text-[10px] font-bold uppercase text-slate-400 tracking-wider block mb-1.5">
                                         Classroom Assessments ({c.exams ? c.exams.length : 0})
@@ -212,7 +212,7 @@ function Classes() {
                                 </div>
                             </div>
 
-                            {/* CARD FOOTER */}
+                            {}
                             <div className="flex items-center justify-between border-t border-slate-50 pt-3 mt-2">
                                 <div
                                     className="flex items-center gap-1.5 text-slate-500"
@@ -291,7 +291,7 @@ function Classes() {
                 </div>
             )}
 
-            {/* MODAL */}
+            {}
             {isOpen && (
                 <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 z-50">
                     <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm overflow-hidden border border-slate-100">
