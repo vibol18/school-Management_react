@@ -188,7 +188,6 @@ function Exams() {
                     );
                 })}
             </div>
-
             {isOpen && (
                 <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 z-50">
                     <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm overflow-hidden">
@@ -205,7 +204,6 @@ function Exams() {
                                     onChange={(e) => setForm({...form, title: e.target.value})}
                                 />
                             </div>
-
                             <div>
                                 <label className="block text-xs font-bold text-slate-500 mb-1">
                                     Select Academic Course Subject
@@ -224,7 +222,7 @@ function Exams() {
                                     ))}
                                 </select>
                             </div>
-
+                            
                             <div>
                                 <label className="block text-xs font-bold uppercase text-slate-500 mb-1">
                                     Assign Classroom Target

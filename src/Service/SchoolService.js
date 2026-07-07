@@ -1,17 +1,21 @@
 import api from "../api/axios";
 
 export const getAllSchool = () => {
-    return api.get("/api/school");
-}
+  return api.get("/schools");
+};
+
 export const getSchoolById = (id) => {
-    return api.get(`/api/school/${id}`);
-}
+  return api.get(`/schools/${id}`);
+};
+
 export const createSchool = (schoolData) => {
-    return api.post("/api/school", schoolData);
-}
+  return api.post("/schools", schoolData);
+};
+
 export const updateSchool = (id, schoolData) => {
-    return api.put(`/api/school/${id}`, schoolData);
-}
+  return api.put(`/schools/${id}`, schoolData);
+};
+
 export const deleteSchool = (id) => {
-    return api.delete(`/api/school/${id}`);
-}
+  return api.delete(`/schools/${id}`);
+};

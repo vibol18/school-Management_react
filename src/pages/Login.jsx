@@ -167,6 +167,7 @@ function Login() {
       }
 
       setQrToken(token);
+      setQrLoading(false);
       startCountdown(expire);
 
       const client = new Client({

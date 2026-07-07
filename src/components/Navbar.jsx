@@ -7,7 +7,7 @@ import {
   markNotificationRead,
   markAllNotificationsRead,
 } from '../Service/NotificationService';
-
+import { getAllSchool } from '../Service/SchoolService';
 const fetchStoredSessionProfile = () => {
   const fallback = { name: 'Admin User', role: 'Administrator', initials: 'AD' };
   try {
@@ -100,13 +100,14 @@ function Navbar() {
   const [showProfile, setShowProfile] = useState(false);
   const [notifs, setNotifs] = useState([]);
   const [user, setUser] = useState(() => fetchStoredSessionProfile());
-
+const [school, setSchool] = useState(null);
   const notifsRef = useRef(null);
   const profileRef = useRef(null);
   const stompClientRef = useRef(null);
 
   const unreadCount = notifs.filter(n => !n.isRead).length;
 
+  
   useEffect(() => {
     fetchHistoricalNotifications();
 
@@ -144,6 +145,21 @@ function Navbar() {
     };
   }, []);
 
+
+  useEffect(() => {
+  fetchHistoricalNotifications();
+  const loadSchool = async () => {
+    try {
+      const res = await getAllSchool();
+      if (res.data && res.data.length > 0) {
+        setSchool(res.data[0]); // take first school
+      }
+    } catch (err) {
+      console.error("Failed to load school", err);
+    }
+  };
+  loadSchool();
+}, []);
   const fetchHistoricalNotifications = async () => {
     try {
       const res = await getNotifications();
@@ -259,7 +275,9 @@ function Navbar() {
             </svg>
           </div>
           <div style={{ lineHeight: 1.2 }}>
-            <div style={{ color: '#fff', fontSize: 13, fontWeight: 700, letterSpacing: '0.01em' }}>Mitch Academy</div>
+            <div style={{ color: '#fff', fontSize: 13, fontWeight: 700 }}>
+  {school ? school.name : "Loading..."}
+</div>
             <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase' }}>School System</div>
           </div>
         </div>
